@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     if(empty($nameerr) && empty($emailerr) && empty($websiteerr) && empty($commenterr)&& empty($gendererr))
     {
 
-        $sql="INSERT INTO demo(fname,email,website,comment,gender) VALUES(?,?,?,?,?)" ;
+        $sql="INSERT INTO demo1 (fname,email,website,comment,gender) VALUES(?,?,?,?,?)" ;
         if($stmt=mysqli_prepare($conn,$sql))
         {
             mysqli_stmt_bind_param($stmt,"sssss",$param_name,$param_email,$param_website,$param_comment,$param_gender);
@@ -96,7 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
             if(mysqli_stmt_execute($stmt))
             {
-                header("location:http://localhost/saar/display.php");
+                header("location:display.php");
                 exit();
             }
             else
@@ -149,7 +149,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     </div>
     <div class="form-group <?php echo(!empty($gendererr))? 'has-error' : ' ' ; ?>">
     <label> Gender </label>
-    <input type="radio" name="gender" value="male" <?php echo $gender; ?>>male
+    <input type="radio" name="gender" value="male" <?php echo $gender; ?> checked >male
     <input type="radio" name="gender" value="female" <?php echo $gender; ?>>female
     <span class="error"><?php echo $gendererr; ?></span>
 </div>  
